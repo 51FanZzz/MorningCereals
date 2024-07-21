@@ -1,9 +1,9 @@
 /*
  * Functions relate to the STATE_INTRO state.
  */ 
-float backgroundCol; 
+float backgroundCol;  // convinence variable to control background color
 
-boolean play = false;
+boolean play = false; // boolean variable to control "Press Enter to eat" subtitle
 
 
 void restart_Game(){
@@ -18,27 +18,27 @@ void restart_Game(){
  */
  
 void setup_Intro() {
-  // There is no variables that needs to be initialise (life remain/ timing..)in the setup
-  backgroundCol = 0;
+  // There is no variables that needs to be initialise in the setup
 }
 
 
 /**
- * Draws when player in INTRO_STATE
+ * Draws when player enter INTRO_STATE
  */
 void draw_Intro(){
   
   
   background(backgroundCol); 
-  backgroundCol+=3;
+  backgroundCol+=3;  // color slowly turns white
   
-  textAlign(CENTER);    // [ Typography - Processing ]
+  textAlign(CENTER);    
   textSize(40);
   fill(10);
   text("ARE YOU HUNGRY ?", width/2, height/2);
   
-  if(backgroundCol == 255){
-  play = true;
+  if(backgroundCol == 255)   // when background is white, shows pressing hint
+  {
+  play = true; 
   }
   if(play){
   fill(255, 0, 0);
@@ -55,9 +55,8 @@ void draw_Intro(){
  
  void keyPressed_Intro() {
    
-   if(keyCode  == ENTER){
+   if(keyCode  == ENTER){       // press 'ENTER' to enter STATE_MainGame
     backgroundCol ++;
-    // press 'ENTER' to enter STATE_MainGame
     gameBegin();
     println("Game state : INTRO");
     

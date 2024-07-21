@@ -1,0 +1,91 @@
+# Changelog
+
+All changes of " Let's Eat " will be documented in this file.
+
+This changelog is using [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+
+
+## [1.4] 2022-05-28
+
+### Added
+
+- Added "Sound Library"
+
+- Added highest score keeping
+
+
+### Fixed
+
+- Fixed game state switching problem
+
+
+
+
+## [1.3] 2022-05-29
+
+### Added
+
+- Added an new object "Rock"
+
+
+### Fixed
+
+- Fixed the cereal bounce back when hit walls problem
+
+- Fixed images display problems
+
+
+
+
+## [1.2] 2022-05-25
+
+### Fixed
+
+- Fixed a bug of cereal bouncing and the paddle interacting
+
+- Fixed game state switching bugs
+
+
+
+
+## [1.1] 2022-05-12
+
+### Removed
+
+- Removed game content of two other scenes: brushing teeth, opening the eyes
+
+
+### Fixed
+
+- Fixed a bug of cutscenes
+
+
+### Added
+
+- Added game states , images
+
+
+
+
+
+## [1.0] 2022-05-01
+
+### Added
+
+- Added a new object "paddles"
+
+
+### Fixed
+
+-  n.a.
+
+
+### Changed
+
+- n.a.
+
+
+### Removed
+
+- n.a.
+

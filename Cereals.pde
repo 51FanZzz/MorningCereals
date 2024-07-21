@@ -1,15 +1,14 @@
 class Cereal {
-  float x, y;
-  float dx, dy;
-  float d;   //circle 
+  float x, y;  // x and y coordinates of the cereal
+  float dx, dy;  // horizontal and vertical movements of the cereal
+  float d;   //diameter of the cereal 
 
-  PImage cerealImg;
+  PImage cerealImg;  // cereal image loading
 
   Cereal() {
     
     cerealImg = loadImage("data/cereal.png");
 
-    //x = 100;
     x = random(width/2, width-100);
     y = random(d*2, height-(d*2) );
     dx = random(-10);
@@ -19,19 +18,18 @@ class Cereal {
   }
 
   void update() {
-    x += dx;
+    x += dx;  // moving the cereal
     y += dy;
 
-    if ( x+d/2 >= width-1   ) {
+    if ( x+d/2 >= width-1   ) 
+    {  // if cereals hit right wall: life-1
       life = life - 1;
-      fill(255, 0, 0);
-      text("Oops!!", x-50, y); 
+      println("Oops!!"); 
     }
-    if (x-d/2 <= 0) {
-      dx *=-1;
+    if (x-d/2 <= 0) {  // if cereals hit left wall: score+1
       score += 1;
     }
-    if ((y+d/2 >= height-1) && (dy > 0) ) {
+    if ((y+d/2 >= height-1) && (dy > 0) ) {   // if cereals hit top or bottom walls: bounce back
       dy *=-1;
     }
     if ( (y-d/2 <= 0) && (dy < 0)  ) {
@@ -42,20 +40,19 @@ class Cereal {
   void render() {
     imageMode(CENTER);
     
-    pushMatrix();
-    translate(x, y);
+    pushMatrix();  
     
-    float angle = atan2(dy, dx);
-    
+    translate(x, y);  // reset (x, y) coordinates as (0, 0)
+    float angle = atan2(dy, dx);  // cereals image rotate at a certain angle depending on dy and dx
     rotate(angle);
     image(cerealImg, 0, 0, d, d);
-    popMatrix();
+    
+    popMatrix();   
   }
 
   void bounce(Paddles _paddle) {
 
-    //hits left paddle, bounce back with a different angle
-    if ( this.x+this.d/2 > _paddle.xp
+    if ( this.x+this.d/2 > _paddle.xp   //hits left side of the paddle, bounce back with a different angle
       && this.y          > _paddle.yp
       && this.y          < _paddle.yp+_paddle.hei
       && this.dx         >=0)
@@ -64,21 +61,19 @@ class Cereal {
       this.dy *= -3/2;
     }
     
-    //if hit top, bounce back with a different angle
-    if( this.x  > _paddle.xp
-     && this.x  < _paddle.xp + _paddle.wid
+    if( this.x  >  _paddle.xp       //if hit top, bounce back with a different angle
+     && this.x  <  _paddle.xp + _paddle.wid
      && this.y  == _paddle.yp
-     && this.dy > 0)
+     && this.dy >  0)
     {
       this.dx *= -1;
       this.dy *= -3/2;
     }
 
-    //if hit bottom plate, bounce back with a different angle
-    if( this.x    > _paddle.xp
+    if( this.x    > _paddle.xp      //if hit bottom plate, bounce back with a different angle
      && this.x    < _paddle.xp + _paddle.wid
      && this.y   == _paddle.yp + _paddle.hei
-     && this.dy  < 0 )
+     && this.dy   < 0 )
     {
       this.dx *= -1;
       this.dy *= -3/2;
@@ -86,21 +81,14 @@ class Cereal {
 
   }
   
-    // crash detection 
-  boolean crashed(Rocks _rock){
-    return( this.x + this.d/2 > _rock.x - _rock.d/2   // crash to the left of cereal
-    &&  this.x - this.d/2 < _rock.x + _rock.d/2   // crash to the right of cereal
-    &&  this.y + this.d/2 > _rock.y - _rock.d/2   // crash to the top of cereal
-    &&  this.y - this.d/2 < _rock.y + _rock.d/2   // crash to the bottom of cereal
-    &&  this.dx <0 );
-  }
-  
-  
+
+    // check whether the cereal has touched right wall
   boolean hasLeftScreen()
   {
     return(x+d/2 >= width-1);
   }
   
+    // check whether the cereal has touched left wall
   boolean hasEaten()
   {
     return( x-d/2 <= 0 );
@@ -109,4 +97,4 @@ class Cereal {
   
   
   
-} // [[[ End Of Class ]]]
+}
